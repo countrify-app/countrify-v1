@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@countrify-app/countrify-components": "^1.0.21",
     "@types/node": "18.11.9",
     "@types/react-dom": "18.0.8",
     "eslint": "8.26.0",
