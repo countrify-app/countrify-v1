@@ -5,17 +5,15 @@ import { years, countries } from "../utils/data"
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
 
 export default function Home({ data }: any) {
-  let arr = [];
+  const arr = new Array<object>()
   console.log(data.dataSets[0].series);
   let employment = Object.values(data.dataSets[0].series)[0].observations;
-  Object.keys(employment).forEach(function (key: number, index: number) {
-    arr.push({name: years[key], uv: employment[key][0], pv: 100});
+  Object.keys(years).forEach(function (key: number, index: number) {
+    if (Object.keys(years)[key] === Object.keys(employment)[key]) {
+      arr.push({name: years[key], uv: employment[key][0], pv: 100});
+    }
   });
-  // Object.keys(employment).forEach(key => {
-  //   employment[key] = employment[key][0]
-  // });
-  console.log(countries)
-
+  console.log(arr)
   return (
     <div className={styles.container}>
       <Button label="bouton" kind="red" />
@@ -31,7 +29,7 @@ export default function Home({ data }: any) {
 
 export async function getStaticProps() {
   const data = await fetch(
-    `https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.10/..SL_TLF_UEM.36.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD`,
+    `https://data.un.org/ws/rest/data/IAEG-SDGs,DF_SDG_GLH,1.10/..SL_TLF_UEM.44.........../ALL/?detail=full&dimensionAtObservation=TIME_PERIOD`,
     {
       headers: {
         Accept: "text/json",
